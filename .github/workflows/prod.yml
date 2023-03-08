@@ -1,0 +1,24 @@
+name: Geowar Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install app dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Files
+        run: npm run deploy-app
