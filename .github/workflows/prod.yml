@@ -31,7 +31,7 @@ jobs:
 
       - name: build electron app
         working-directory: ./electron
-        run: npm run build
+        run: npm run build-app
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
