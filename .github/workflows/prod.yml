@@ -29,8 +29,8 @@ jobs:
         working-directory: ./electron
         run: npm install
 
-      - name: build electrong app
-        working-director: ./electrong
+      - name: build electron app
+        working-directory: ./electron
         run: npm run build
 
       - name: Build/release Electron app
