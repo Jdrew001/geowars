@@ -34,6 +34,7 @@ jobs:
         run: npm run build-app
 
       - name: Build/release Electron app
+        working-directory: ./electron
         uses: samuelmeuli/action-electron-builder@v1
         with:
           # GitHub token, automatically provided to the action
