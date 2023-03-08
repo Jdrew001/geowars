@@ -17,8 +17,18 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install app dependencies
-        run: npm install --legacy-peer-deps
+      - name: Install app dependencies client
+        working-directory: ./client
+        run: npm install
 
-      - name: Build Files
+      - name: Build Game client
+        working-directory: ./client
+        run: npm run build
+
+      - name: Install app dependencies electron
+        working-directory: ./electron
+        run: npm install
+
+      - name: Build Files electron
+        working-directory: ./electron
         run: npm run deploy-app
