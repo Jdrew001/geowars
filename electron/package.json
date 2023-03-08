@@ -4,6 +4,10 @@
   "main": "./main.js",
   "author": "Marco Chierchia",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Jdrew001/geowars"
+  },
   "scripts": {
     "copy": "yarn --cwd ../client build && node ./scripts/copy-from-client.js",
     "electron": "electron .",
@@ -11,15 +15,18 @@
     "preview": "yarn copy && yarn electron",
     "app:dir": "electron-builder --dir",
     "app:dist": "electron-builder",
-    "build": "yarn copy && yarn app:dist"
+    "build": "yarn copy && yarn app:dist",
+    "build-app": "electron-builder build --win --publish never",
+    "deploy-app": "electron-builder build --win --publish always"
   },
   "devDependencies": {
-    "electron": "^21.0.0",
-    "electron-builder": "^23.3.3"
+    "electron": "^21.4.2",
+    "electron-builder": "^23.6.0"
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
     "cheerio": "^1.0.0-rc.12",
+    "electron-updater": "^5.3.0",
     "fs-extra": "^10.1.0"
   },
   "build": {

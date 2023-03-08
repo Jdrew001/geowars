@@ -45,7 +45,7 @@ export class SoundManager {
     }
 
     playSound(soundConfig: SoundConfig) {
-        //this.scene.sound.add(soundConfig.name, {loop: soundConfig.loop, volume: soundConfig.volume}).play();
+        this.scene.sound.add(soundConfig.name, {loop: soundConfig.loop, volume: soundConfig.volume}).play();
     }
 
     pauseSounds() {
