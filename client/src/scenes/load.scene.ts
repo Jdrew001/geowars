@@ -25,6 +25,6 @@ export default class LoadingScene extends Phaser.Scene {
 	}
 
     create() {
-        this.scene.start(MainScene.name);
+        setTimeout(() => {this.scene.start(MainScene.name);}, 1);
     }
 }
