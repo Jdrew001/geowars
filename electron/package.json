@@ -1,10 +1,9 @@
 {
-  "name": "geowars",
+  "name": "Geowars",
   "version": "0.0.5",
   "main": "./main.js",
   "author": "Marco Chierchia",
   "license": "MIT",
-  "repository": "https://github.com/Jdrew001/geowars",
   "scripts": {
     "copy": "yarn --cwd ../client build && node ./scripts/copy-from-client.js",
     "electron": "electron .",
@@ -12,19 +11,26 @@
     "preview": "yarn copy && yarn electron",
     "app:dir": "electron-builder --dir",
     "app:dist": "electron-builder",
-    "build": "yarn copy && yarn app:dist",
-    "build-app": "electron-builder build --win --publish never",
-    "deploy-app": "electron-builder build --win --publish always"
+    "build": "yarn copy && yarn app:dist"
   },
   "devDependencies": {
-    "electron": "^21.4.2"
+    "electron": "^21.0.0",
+    "electron-builder": "^23.3.3"
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
     "cheerio": "^1.0.0-rc.12",
-    "electron-updater": "^5.3.0",
-    "fs-extra": "^10.1.0",
-    "update-electron-app": "^2.0.1"
+    "fs-extra": "^10.1.0"
+  },
+  "build": {
+    "appId": "com.dtatkison.geowars",
+    "productName": "Geowars",
+    "win": {
+      "target": "nsis"
+    },
+    "directories": {
+      "output": "dist"
+    }
   },
   "nodeversion": "14.18.1",
   "npmversion": "8.13.2"
