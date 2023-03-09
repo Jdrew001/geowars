@@ -2,7 +2,8 @@ name: Geowar Pipeline
 
 on:
   push:
-    branches: [ main ]
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
@@ -31,14 +32,26 @@ jobs:
 
       - name: build electron app
         working-directory: ./electron
-        run: npm run build-app
+        run: npm run build
 
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
 
-
-          package_root: ./electron
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./dist/Geowars Setup 0.0.4.exe
+          asset_name: Geowars Setup 0.0.4.exe
+          asset_content_type: application/exe
