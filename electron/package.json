@@ -17,8 +17,7 @@
     "deploy-app": "electron-builder build --win --publish always"
   },
   "devDependencies": {
-    "electron": "^21.4.2",
-    "electron-builder": "^23.6.0"
+    "electron": "^21.4.2"
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
