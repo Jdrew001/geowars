@@ -25,6 +25,7 @@
   "build": {
     "appId": "com.dtatkison.geowars",
     "productName": "Geowars",
+    "artifactName": "Geowars.${ext}",
     "win": {
       "target": "nsis"
     },
