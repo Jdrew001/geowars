@@ -1,6 +1,6 @@
 {
   "name": "phaser-3-typescript-electron-template",
-  "version": "0.0.3.1",
+  "version": "0.0.4",
   "main": "./main.js",
   "author": "Marco Chierchia",
   "license": "MIT",
