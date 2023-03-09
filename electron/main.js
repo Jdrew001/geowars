@@ -4,10 +4,15 @@ const path = require("path");
 const { autoUpdater } = require('electron-updater');
 
 require("@electron/remote/main").initialize();
+require('update-electron-app')({
+  repo: 'https://github.com/Jdrew001/geowars',
+  updateInterval: '5 minutes'
+});
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true";
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
 
 
 const createWindow = () => {
@@ -16,7 +21,6 @@ const createWindow = () => {
     width: 1920,
     height: 1080,
     backgroundColor: 'black',
-    fullscreen: true,
     resizable: false,
     minimizable: false,
     webPreferences: {
@@ -36,6 +40,10 @@ const createWindow = () => {
 
   // Open the DevTools.
   //if (isDevelopment) mainWindow.webContents.openDevTools()
+
+  mainWindow.once('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  });
 };
 
 // This method will be called when Electron has finished
@@ -56,20 +64,4 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
-});
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-
-mainWindow.once('ready-to-show', () => {
-  autoUpdater.checkForUpdatesAndNotify();
-});
-
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
-});
-
-ipcRenderer.on('update_downloaded', () => {
-  ipcRenderer.removeAllListeners('update_downloaded');
-  autoUpdater.quitAndInstall();
 });

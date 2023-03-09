@@ -1,12 +1,13 @@
 {
   "name": "phaser-3-typescript-electron-template",
-  "version": "1.0.0",
+  "version": "0.0.3.1",
   "main": "./main.js",
   "author": "Marco Chierchia",
   "license": "MIT",
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Jdrew001/geowars"
+  "repository": "https://github.com/Jdrew001/geowars",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
   },
   "scripts": {
     "copy": "yarn --cwd ../client build && node ./scripts/copy-from-client.js",
@@ -27,12 +28,17 @@
     "@electron/remote": "^2.0.8",
     "cheerio": "^1.0.0-rc.12",
     "electron-updater": "^5.3.0",
-    "fs-extra": "^10.1.0"
+    "fs-extra": "^10.1.0",
+    "update-electron-app": "^2.0.1"
   },
   "build": {
-    "appId": "your.id",
-    "mac": {
-      "category": "your.app.category.type"
+    "appId": "com.dtatkison.geowars",
+    "productName": "Geowars",
+    "win": {
+      "target": "nsis"
+    },
+    "directories": {
+      "output": "dist"
     }
   },
   "nodeversion": "14.18.1",
